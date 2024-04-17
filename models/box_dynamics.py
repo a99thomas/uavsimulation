@@ -91,7 +91,8 @@ class BoxDynamics:
         self.destination = destination
         prev_waypoint = np.reshape(waypoints.ned[0:3,-3],(3,1))
         Va = mav_state.Va
-        time_before_destination = np.roots([4.905, Va * np.sin(self.true_state.theta), -self.true_state.altitude])[1]
+        # time_before_destination = np.roots([4.905, Va * np.sin(self.true_state.theta), -self.true_state.altitude])[1]
+        time_before_destination = (-Va * np.sin(self.true_state.theta) + np.sqrt((Va * np.sin(self.true_state.theta))**2 - 4*4.905 * -self.true_state.altitude))/9.81
         self.vel_at_drop = np.reshape([[Va * np.cos(self.true_state.chi)],[Va*np.
                                                                       sin(self.true_state.chi)], [Va*np.sin(self.true_state.theta)]], (3,1))
         dropping_point = destination - time_before_destination * self.vel_at_drop*1.06
@@ -107,8 +108,8 @@ class BoxDynamics:
             self.prev_sim_time = sim_time
             self.height_at_drop = -self.true_state.altitude
             self.Vdrop = self.vel_at_drop.item(2)
-            print(self.height_at_drop)
-            print(self.vel_at_drop)
+            # print(self.height_at_drop)
+            # print(self.vel_at_drop)
             print("Dropping")
 
     def calculate_position(self, sim_time):
@@ -166,7 +167,7 @@ class BoxDynamics:
             self.true_state.beta = mav_state.beta
             self.true_state.alpha = mav_state.alpha
             self.true_state.gamma = mav_state.gamma
-            print(self.true_state.phi)
+            # print(self.true_state.phi)
             Va = mav_state.Va
             self.vel_at_drop = np.reshape([[Va * np.cos(self.true_state.chi)],[Va*np.
                                                                       sin(self.true_state.chi)], [Va*np.sin(self.true_state.theta)]], (3,1))

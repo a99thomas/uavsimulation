@@ -99,7 +99,7 @@ class DrawBox:
             [0, 2, 6],  # Side 2a
             [0, 4, 6],  # Side 2b
             [1, 3, 5], # Side 3a
-            [1, 5, 7], # Side 3b
+            [3, 5, 7], # Side 3b
             [2, 3, 7],  # Side 4a
             [2, 6, 7],  # Side 4b
             [4, 5, 6],  # Top 1
